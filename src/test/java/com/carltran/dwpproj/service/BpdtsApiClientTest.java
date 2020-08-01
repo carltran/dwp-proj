@@ -1,7 +1,7 @@
 package com.carltran.dwpproj.service;
 
-import com.carltran.dwpproj.pojo.User;
-import com.carltran.dwpproj.pojo.UserList;
+import com.carltran.dwpproj.dto.User;
+import com.carltran.dwpproj.dto.UserList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;

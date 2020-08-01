@@ -1,13 +1,11 @@
 package com.carltran.dwpproj;
 
-import com.carltran.dwpproj.pojo.User;
-import com.carltran.dwpproj.pojo.UserList;
+import com.carltran.dwpproj.dto.User;
+import com.carltran.dwpproj.dto.UserList;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.assertj.core.util.Lists;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public final class TestData {

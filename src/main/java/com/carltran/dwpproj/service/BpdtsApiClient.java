@@ -1,7 +1,8 @@
 package com.carltran.dwpproj.service;
 
-import com.carltran.dwpproj.pojo.User;
-import com.carltran.dwpproj.pojo.UserList;
+import com.carltran.dwpproj.dto.User;
+import com.carltran.dwpproj.dto.UserList;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,7 @@ import com.google.common.collect.ImmutableMap;
 import java.util.List;
 
 @Service
+@Slf4j
 public class BpdtsApiClient {
   private final RestTemplate restTemplate;
 
@@ -24,6 +26,7 @@ public class BpdtsApiClient {
   }
 
   public UserList getUsers() {
+    log.info("Retrieving all users");
     ResponseEntity<List<User>> response =
         restTemplate.exchange(
             UriComponentsBuilder.newInstance().path("/users").toUriString(),
@@ -37,6 +40,7 @@ public class BpdtsApiClient {
   public User getUser(Integer id) {
     Assert.notNull(id, "user id must be provided");
 
+    log.info("Retrieving user id: {}", id);
     ResponseEntity<User> responseEntity =
         restTemplate.getForEntity(
             UriComponentsBuilder.newInstance()

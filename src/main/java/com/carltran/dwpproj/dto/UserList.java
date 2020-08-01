@@ -1,4 +1,4 @@
-package com.carltran.dwpproj.pojo;
+package com.carltran.dwpproj.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
