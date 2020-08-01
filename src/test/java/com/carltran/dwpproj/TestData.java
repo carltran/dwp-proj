@@ -3,9 +3,8 @@ package com.carltran.dwpproj;
 import com.carltran.dwpproj.dto.User;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import org.assertj.core.util.Lists;
-
 import java.util.List;
+import org.assertj.core.util.Lists;
 
 public final class TestData {
   public static User givenUser(Integer id) {

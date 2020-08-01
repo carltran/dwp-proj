@@ -1,8 +1,14 @@
 package com.carltran.dwpproj.controller;
 
+import static com.carltran.dwpproj.TestData.givenMixedUsers;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import com.carltran.dwpproj.dto.User;
 import com.carltran.dwpproj.service.BpdtsApiClient;
 import com.carltran.dwpproj.service.DistanceCalculator;
+import java.util.List;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +20,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.client.HttpServerErrorException;
-
-import java.util.List;
-
-import static com.carltran.dwpproj.TestData.givenMixedUsers;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc

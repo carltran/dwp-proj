@@ -5,6 +5,8 @@ import com.carltran.dwpproj.dto.User;
 import com.carltran.dwpproj.dto.UsersResponse;
 import com.carltran.dwpproj.service.BpdtsApiClient;
 import com.carltran.dwpproj.service.DistanceCalculator;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,9 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @Slf4j

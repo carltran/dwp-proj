@@ -1,9 +1,9 @@
 package com.carltran.dwpproj.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class DistanceCalculatorTest {
 

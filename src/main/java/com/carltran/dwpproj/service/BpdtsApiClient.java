@@ -1,6 +1,8 @@
 package com.carltran.dwpproj.service;
 
 import com.carltran.dwpproj.dto.User;
+import com.google.common.collect.ImmutableMap;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -10,9 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import com.google.common.collect.ImmutableMap;
-
-import java.util.List;
 
 @Service
 @Slf4j

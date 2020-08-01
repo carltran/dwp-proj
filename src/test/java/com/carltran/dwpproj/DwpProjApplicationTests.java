@@ -1,5 +1,9 @@
 package com.carltran.dwpproj;
 
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 import com.carltran.dwpproj.controller.UserApiController;
 import com.carltran.dwpproj.service.BpdtsApiClient;
 import com.carltran.dwpproj.service.DistanceCalculator;
@@ -11,10 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest(classes = {DwpProjApplication.class})
 @AutoConfigureMockMvc
