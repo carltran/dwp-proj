@@ -2,9 +2,7 @@ package com.carltran.dwpproj.service;
 
 import com.carltran.dwpproj.pojo.User;
 import com.carltran.dwpproj.pojo.UserList;
-import com.carltran.dwpproj.service.BpdtsApiClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableList;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +12,8 @@ import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
-import java.util.List;
-
+import static com.carltran.dwpproj.TestData.givenUser;
+import static com.carltran.dwpproj.TestData.givenUserList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.client.ExpectedCount.once;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -48,7 +46,8 @@ class BpdtsApiClientTest {
         .andExpect(method(HttpMethod.GET))
         .andRespond(
             withSuccess(
-                objectMapper.writeValueAsString(expectedUserList), MediaType.APPLICATION_JSON));
+                objectMapper.writeValueAsString(expectedUserList.getUsers()),
+                MediaType.APPLICATION_JSON));
 
     UserList userList = bpdtsApiClient.getUsers();
 
@@ -72,27 +71,5 @@ class BpdtsApiClientTest {
     mockRestServiceServer.verify();
     assertThat(user).isNotNull();
     assertThat(user).isEqualTo(expectedUser);
-  }
-
-  private static User givenUser(Integer id) {
-    return User.builder()
-        .id(id)
-        .firstName("first name " + id)
-        .lastName("last name 2" + id)
-        .email("email" + id + "@test.com")
-        .latitude(Math.random())
-        .longitude(Math.random())
-        .ipAddress(id + ".1.2.3")
-        .build();
-  }
-
-  private static List<User> givenUsers() {
-    return ImmutableList.of(givenUser(1), givenUser(2));
-  }
-
-  private static UserList givenUserList() {
-    UserList userList = new UserList();
-    userList.setUsers(givenUsers());
-    return userList;
   }
 }

@@ -12,6 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import com.google.common.collect.ImmutableMap;
 
+import java.util.List;
+
 @Service
 public class BpdtsApiClient {
   private final RestTemplate restTemplate;
@@ -22,8 +24,14 @@ public class BpdtsApiClient {
   }
 
   public UserList getUsers() {
-    return restTemplate.getForObject(
-        UriComponentsBuilder.newInstance().path("/users").toUriString(), UserList.class);
+    ResponseEntity<List<User>> response =
+        restTemplate.exchange(
+            UriComponentsBuilder.newInstance().path("/users").toUriString(),
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<List<User>>() {});
+
+    return new UserList(response.getBody());
   }
 
   public User getUser(Integer id) {
