@@ -1,7 +1,6 @@
 package com.carltran.dwpproj.service;
 
 import com.carltran.dwpproj.dto.User;
-import com.carltran.dwpproj.dto.UserList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,8 +11,9 @@ import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
-import static com.carltran.dwpproj.TestData.givenUser;
-import static com.carltran.dwpproj.TestData.givenUserList;
+import java.util.List;
+
+import static com.carltran.dwpproj.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.client.ExpectedCount.once;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -39,21 +39,20 @@ class BpdtsApiClientTest {
   @Test
   @SneakyThrows
   void getUsers_whenSuccess_thenReceiveAllUsers() {
-    UserList expectedUserList = givenUserList();
+    List<User> expectedUserList = givenUsers();
 
     mockRestServiceServer
         .expect(once(), requestTo("https://bpdts-test-app-v3.herokuapp.com/users"))
         .andExpect(method(HttpMethod.GET))
         .andRespond(
             withSuccess(
-                objectMapper.writeValueAsString(expectedUserList.getUsers()),
-                MediaType.APPLICATION_JSON));
+                objectMapper.writeValueAsString(expectedUserList), MediaType.APPLICATION_JSON));
 
-    UserList userList = bpdtsApiClient.getUsers();
+    List<User> userList = bpdtsApiClient.getUsers();
 
     mockRestServiceServer.verify();
     assertThat(userList).isNotNull();
-    assertThat(userList.getUsers()).containsExactlyElementsOf(expectedUserList.getUsers());
+    assertThat(userList).containsExactlyElementsOf(expectedUserList);
   }
 
   @Test

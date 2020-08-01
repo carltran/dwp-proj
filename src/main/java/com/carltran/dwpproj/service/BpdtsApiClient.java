@@ -1,7 +1,6 @@
 package com.carltran.dwpproj.service;
 
 import com.carltran.dwpproj.dto.User;
-import com.carltran.dwpproj.dto.UserList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -25,7 +24,7 @@ public class BpdtsApiClient {
     this.restTemplate = restTemplate;
   }
 
-  public UserList getUsers() {
+  public List<User> getUsers() {
     log.info("Retrieving all users");
     ResponseEntity<List<User>> response =
         restTemplate.exchange(
@@ -34,7 +33,7 @@ public class BpdtsApiClient {
             null,
             new ParameterizedTypeReference<List<User>>() {});
 
-    return new UserList(response.getBody());
+    return response.getBody();
   }
 
   public User getUser(Integer id) {

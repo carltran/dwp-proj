@@ -1,6 +1,6 @@
 package com.carltran.dwpproj.controller;
 
-import com.carltran.dwpproj.dto.UserList;
+import com.carltran.dwpproj.dto.User;
 import com.carltran.dwpproj.service.BpdtsApiClient;
 import com.carltran.dwpproj.service.DistanceCalculator;
 import lombok.SneakyThrows;
@@ -15,7 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.client.HttpServerErrorException;
 
-import static com.carltran.dwpproj.TestData.givenMixedUserList;
+import java.util.List;
+
+import static com.carltran.dwpproj.TestData.givenMixedUsers;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -35,12 +37,12 @@ class UserApiControllerTest {
   @Test
   @SneakyThrows
   void getUsers_whenSuccess_thenReturnUsers() {
-    UserList mixedUserList = givenMixedUserList();
+    List<User> mixedUserList = givenMixedUsers();
     when(bpdtsApiClient.getUsers()).thenReturn(mixedUserList);
-    mixedUserList.getUsers().get(2).setCity("City 1");
-    mixedUserList.getUsers().get(3).setCity("City 2");
-    when(bpdtsApiClient.getUser(1)).thenReturn(mixedUserList.getUsers().get(2));
-    when(bpdtsApiClient.getUser(2)).thenReturn(mixedUserList.getUsers().get(3));
+    mixedUserList.get(2).setCity("City 1");
+    mixedUserList.get(3).setCity("City 2");
+    when(bpdtsApiClient.getUser(1)).thenReturn(mixedUserList.get(2));
+    when(bpdtsApiClient.getUser(2)).thenReturn(mixedUserList.get(3));
 
     mockMvc
         .perform(MockMvcRequestBuilders.get("/users"))

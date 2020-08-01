@@ -2,7 +2,6 @@ package com.carltran.dwpproj.controller;
 
 import com.carltran.dwpproj.dto.Error;
 import com.carltran.dwpproj.dto.User;
-import com.carltran.dwpproj.dto.UserList;
 import com.carltran.dwpproj.dto.UsersResponse;
 import com.carltran.dwpproj.service.BpdtsApiClient;
 import com.carltran.dwpproj.service.DistanceCalculator;
@@ -43,11 +42,11 @@ public class UserApiController {
   public ResponseEntity<UsersResponse> getUsers() {
     try {
       log.info("Calling API to get all users");
-      UserList allUsers = bpdtsApiClient.getUsers();
+      List<User> allUsers = bpdtsApiClient.getUsers();
 
       log.info("Filtering users close to target location and retrieving full user details");
       List<User> filteredUsers =
-          allUsers.getUsers().stream()
+          allUsers.stream()
               .filter(
                   user ->
                       distanceCalculator.distanceBetween(

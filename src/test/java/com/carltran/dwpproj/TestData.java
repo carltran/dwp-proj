@@ -1,7 +1,6 @@
 package com.carltran.dwpproj;
 
 import com.carltran.dwpproj.dto.User;
-import com.carltran.dwpproj.dto.UserList;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.assertj.core.util.Lists;
@@ -25,21 +24,12 @@ public final class TestData {
     return ImmutableList.of(givenUser(1), givenUser(2));
   }
 
-  public static UserList givenUserList() {
-    UserList userList = new UserList();
-    userList.setUsers(givenUsers());
-    return userList;
-  }
-
-  public static UserList givenMixedUserList() {
-    UserList userList = new UserList();
+  public static List<User> givenMixedUsers() {
     Iterable<User> combinedIterables =
         Iterables.unmodifiableIterable(
             Iterables.concat(givenUsersFarFromLondon(), givenUsersNearLondon()));
 
-    userList.setUsers(Lists.newArrayList(combinedIterables));
-
-    return userList;
+    return Lists.newArrayList(combinedIterables);
   }
 
   public static List<User> givenUsersNearLondon() {
