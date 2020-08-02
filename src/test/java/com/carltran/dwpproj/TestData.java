@@ -11,7 +11,7 @@ public final class TestData {
     return User.builder()
         .id(id)
         .firstName("first name " + id)
-        .lastName("last name 2" + id)
+        .lastName("last name " + id)
         .email("email" + id + "@test.com")
         .latitude(Math.random())
         .longitude(Math.random())
